@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Thêm dòng này vào file colors.xml hiện có -->
+    <color name="rating_star_color">#FFD700</color>
+    <color name="nav_background">#80303030</color>
+    <color name="nav_background_light">#80FFFFFF</color> <!-- 50% trong suốt trắng -->
+    <color name="nav_background_dark">#80303030</color> <!-- 50% trong suốt xám đen -->
+    <color name="nav_background_amoled">#80121212</color> <!-- 50% trong suốt đen AMOLED -->
+    <color name="nav_capsule_background_light">#80FFFFFF</color>
+    <color name="nav_capsule_background_dark">#80303030</color>
+    <color name="nav_capsule_background_amoled">#80121212</color>
+    <color name="hamburger_background">#99000000</color>
+    <!-- Cast UI Colors -->
+    <color name="cast_connected">#4CAF50</color>
+    <color name="cast_scanning">#FF9800</color>
+    <color name="cast_disconnected">#757575</color>
+    <color name="cast_device_background">#FAFAFA</color>
+    <color name="cast_device_background_dark">#2C2C2C</color>
+    <color name="cast_ripple">#1A000000</color>
+    <color name="cast_ripple_dark">#1AFFFFFF</color>
+    
+    <!-- Status Colors -->
+    <color name="status_connected_bg">#E8F5E8</color>
+    <color name="status_connected_text">#2E7D32</color>
+    <color name="status_scanning_bg">#FFF3E0</color>
+    <color name="status_scanning_text">#F57C00</color>
+</resources>

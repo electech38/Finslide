@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/refresh_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:context=".fragments.HomeFragment">
+
+                <include
+                    android:id="@+id/error_layout"
+                    layout="@layout/error_panel" />
+
+                <!-- Featured Banner Container - Chiều cao 480dp -->
+                <FrameLayout
+                    android:id="@+id/featured_banner_container"
+                    android:layout_width="0dp"
+                    android:layout_height="480dp"
+                    android:background="@android:color/black"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <!-- Featured Poster ViewPager2 for auto sliding -->
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/featured_viewpager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <!-- Header gradient overlay -->
+                    <View
+                        android:id="@+id/header_gradient"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/header_gradient" />
+
+                    <!-- Thanh bar đứng chứa nút setting và search, đặt ở bên trái -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/top_bar_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start|top"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="15dp"
+                        app:cardBackgroundColor="#99000000"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="2dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="40dp"
+                            android:layout_height="100dp">
+
+                            <!-- Nút Settings -->
+                            <ImageButton
+                                android:id="@+id/btn_settings"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:contentDescription="@string/title_settings"
+                                android:padding="8dp"
+                                android:src="@drawable/ic_settings"
+                                app:tint="@android:color/white"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <!-- Nút Search -->
+                            <ImageButton
+                                android:id="@+id/btn_search"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:contentDescription="@string/search"
+                                android:padding="8dp"
+                                android:src="@drawable/ic_search"
+                                app:tint="@android:color/white"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Logo - canh giữa, trên ratings + time -->
+                    <ImageView
+                        android:id="@+id/featured_logo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center_horizontal"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginBottom="80dp"
+                        android:adjustViewBounds="true"
+                        android:maxHeight="120dp"
+                        android:scaleType="fitCenter"
+                        android:visibility="gone"
+                        tools:src="@tools:sample/avatars"
+                        tools:visibility="visible" />
+
+                    <!-- HeroSlide-style Ratings & Time Container - dưới logo, cách logo 10dp -->
+                    <LinearLayout
+                        android:id="@+id/featured_info_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center_horizontal"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginEnd="30dp"
+                        android:layout_marginBottom="30dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <!-- IMDb Rating -->
+                        <LinearLayout
+                            android:id="@+id/featured_imdb_container"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <ImageView
+                                android:id="@+id/featured_imdb_logo"
+                                android:layout_width="33dp"
+                                android:layout_height="18dp"
+                                android:contentDescription="IMDb Logo"
+                                android:src="@drawable/ic_imdb_logo" />
+
+                            <TextView
+                                android:id="@+id/featured_imdb_rating"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:textColor="@android:color/white"
+                                android:textSize="14sp"
+                                tools:text="8.5" />
+                        </LinearLayout>
+
+                        <!-- Separator 1 -->
+                        <TextView
+                            android:id="@+id/separator_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:text="•"
+                            android:textColor="@color/aquamarine"
+                            android:textSize="10sp"
+                            android:visibility="gone" />
+
+                        <!-- TMDB Rating -->
+                        <LinearLayout
+                            android:id="@+id/featured_tmdb_container"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <ImageView
+                                android:id="@+id/featured_tmdb_logo"
+                                android:layout_width="33dp"
+                                android:layout_height="18dp"
+                                android:contentDescription="TMDB Logo"
+                                android:src="@drawable/ic_tmdb_logo" />
+
+                            <TextView
+                                android:id="@+id/featured_tmdb_rating"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:textColor="@android:color/white"
+                                android:textSize="14sp"
+                                tools:text="85%" />
+                        </LinearLayout>
+
+                        <!-- Separator 2 -->
+                        <TextView
+                            android:id="@+id/separator_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:text="•"
+                            android:textColor="@color/aquamarine"
+                            android:textSize="10sp"
+                            android:visibility="gone" />
+
+                        <!-- Critic Rating (Rotten Tomatoes) -->
+                        <LinearLayout
+                            android:id="@+id/featured_critic_container"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <ImageView
+                                android:id="@+id/featured_tomato_logo"
+                                android:layout_width="18dp"
+                                android:layout_height="20dp"
+                                android:contentDescription="Tomato Logo"
+                                android:src="@drawable/ic_tomato_logo" />
+
+                            <TextView
+                                android:id="@+id/featured_critic_rating"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:textColor="@android:color/white"
+                                android:textSize="14sp"
+                                tools:text="92%" />
+
+                            <ImageView
+                                android:id="@+id/featured_critic_status"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_marginStart="4dp"
+                                android:contentDescription="Critic Status"
+                                android:src="@drawable/ic_tomato_fresh" />
+                        </LinearLayout>
+
+                        <!-- Separator 3 -->
+                        <TextView
+                            android:id="@+id/separator_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:text="•"
+                            android:textColor="@color/aquamarine"
+                            android:textSize="10sp" />
+
+                        <!-- Age Rating -->
+                        <TextView
+                            android:id="@+id/featured_age_rating"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/age_rating_background"
+                            android:paddingStart="8dp"
+                            android:paddingTop="2dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="2dp"
+                            android:textColor="@android:color/black"
+                            android:textSize="14sp"
+                            tools:text="PG-13" />
+
+                        <!-- Separator 4 -->
+                        <TextView
+                            android:id="@+id/separator_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:text="•"
+                            android:textColor="@color/aquamarine"
+                            android:textSize="10sp" />
+
+                        <!-- Year -->
+                        <TextView
+                            android:id="@+id/featured_year"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@android:color/white"
+                            android:textSize="14sp"
+                            tools:text="2023" />
+
+                        <!-- Separator 5 -->
+                        <TextView
+                            android:id="@+id/separator_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="2dp"
+                            android:text="•"
+                            android:textColor="@color/aquamarine"
+                            android:textSize="10sp" />
+
+                        <!-- Runtime -->
+                        <TextView
+                            android:id="@+id/featured_runtime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@android:color/white"
+                            android:textSize="14sp"
+                            tools:text="2h 15m" />
+                    </LinearLayout>
+
+                    <!-- Genres - dưới ratings, cách ratings 10dp -->
+                    <TextView
+                        android:id="@+id/featured_genres"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center_horizontal"
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_marginBottom="5dp"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:textColor="#F0FFFFFF"
+                        android:textSize="14sp"
+                        android:visibility="visible"
+                        tools:text="Action, Adventure, Thriller" />
+
+                    <!-- Navigation Controls -->
+                    <ImageView
+                        android:id="@+id/btn_featured_prev"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_vertical|start"
+                        android:layout_marginStart="10dp"
+                        android:src="@android:drawable/ic_media_previous"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:padding="8dp"
+                        android:alpha="0.8"
+                        android:clickable="true"
+                        android:focusable="true" />
+
+                    <ImageView
+                        android:id="@+id/btn_featured_next"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_vertical|end"
+                        android:layout_marginEnd="10dp"
+                        android:src="@android:drawable/ic_media_next"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:padding="8dp"
+                        android:alpha="0.8"
+                        android:clickable="true"
+                        android:focusable="true" />
+
+                </FrameLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/views_recycler_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:nestedScrollingEnabled="false"
+                    android:overScrollMode="never"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/featured_banner_container"
+                    tools:itemCount="4"
+                    tools:listitem="@layout/view_item" />
+
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/loading_indicator"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
