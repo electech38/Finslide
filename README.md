@@ -1,7 +1,7 @@
 <<<<<<< HEAD
 ![Findroid banner](images/findroid-banner.png)
 
-# Findroid
+# Finslide
 ![GitHub release (with filter)](https://img.shields.io/github/v/release/jarnedemeulemeester/findroid?style=for-the-badge)
 ![GitHub repo stars](https://img.shields.io/github/stars/jarnedemeulemeester/findroid?style=for-the-badge)
 ![GitHub issues](https://img.shields.io/github/issues/jarnedemeulemeester/findroid?style=for-the-badge)
@@ -49,9 +49,6 @@ I am developing this application in my spare time.
 - Android TV
 - Websocket connection (Syncplay)
 - Chromecast support
-
-## Translating
-[JDTech Weblate](https://weblate.jdtech.dev) is a selfhosted instance of Weblate where you can translate this project and future projects of mine.
 
 ## Questions?
 [![](https://dcbadge.vercel.app/api/server/tg5VvTFwTV)](https://discord.gg/tg5VvTFwTV)\
