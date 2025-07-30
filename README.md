@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ![Findroid banner](images/findroid-banner.png)
 
 # Findroid
@@ -66,3 +67,7 @@ The Android robot is reproduced or modified from work created and shared by Goog
 Android is a trademark of Google LLC.
 
 Google Play and the Google Play logo are trademarks of Google LLC.
+
+# Finslide
+client for jellyfin media server 
+>>>>>>> d6d634de624b8b718af310eede04ad3e22bc0bd9
